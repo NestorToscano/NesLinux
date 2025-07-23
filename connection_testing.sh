@@ -1,10 +1,9 @@
 #!/bin/bash
 
-output="$(ping -c 3 $1)"
-#echo "$output"
-
-if [[ "$output" == *"100% packet loss"* ]]; then
-	echo "$1 is currently not working"
+source connection_testing_functions.sh
+if [ $# -ne 1 ]; then
+	echo "Please enter a single argument."
+	exit
 else
-	echo "$1 is recieving packets!"
+	connection_testing "$1"
 fi
